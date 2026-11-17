@@ -1,0 +1,212 @@
+{
+ "config": {
+  "lema": "Café para todo el día",
+  "pie": "Aprobado por Aslan 🐾",
+  "telefonos": [
+   "272-107-2950",
+   "228-228-0708"
+  ],
+  "whatsapp": "",
+  "tituloTemporada": "De temporada 🍂"
+ },
+ "banners": {
+  "lunes": "banners/ensaladas.jpg"
+ },
+ "productos": [
+  {
+   "id": "budin",
+   "n": "Budín",
+   "e": "🍞",
+   "img": "fotos/budin.jpg",
+   "c": "Panadería",
+   "siempre": true
+  },
+  {
+   "id": "panque-de-naranja",
+   "n": "Panqué de naranja",
+   "e": "🍊",
+   "img": "fotos/panque-naranja.jpg",
+   "c": "Panadería",
+   "siempre": true
+  },
+  {
+   "id": "panque-de-vainilla",
+   "n": "Panqué de vainilla",
+   "d": "Sencillo o relleno de Chantilly, cajeta, nutella, frosting de chocolate, fresa o 3 leches.",
+   "e": "🍰",
+   "img": "fotos/panque-vainilla.jpg",
+   "c": "Panadería",
+   "siempre": true
+  },
+  {
+   "id": "panque-de-chocolate",
+   "n": "Panqué de chocolate",
+   "d": "Sencillo o relleno de Chantilly, cajeta, nutella, frosting de chocolate, fresa o 3 leches.",
+   "e": "🍫",
+   "img": "fotos/panque-chocolate.jpg",
+   "c": "Panadería",
+   "siempre": true
+  },
+  {
+   "id": "donas",
+   "n": "Donas",
+   "d": "Azucaradas, con glaseado, de chocolate con y sin chochitos (de chocolate o de colores).",
+   "e": "🍩",
+   "img": "fotos/donas.jpg",
+   "c": "Panadería",
+   "siempre": true
+  },
+  {
+   "id": "roles-de-canela",
+   "n": "Roles de canela",
+   "d": "Sencillos, 3 leches, rompope, glaseado tradicional, frosting de chocolate, Chantilly, nutella o cajeta.",
+   "e": "🌀",
+   "img": "fotos/roles-canela.jpg",
+   "c": "Panadería",
+   "siempre": true
+  },
+  {
+   "id": "jerez-con-rompope",
+   "n": "Jeréz con rompope",
+   "img": "fotos/gelatina-jerez-rompope.jpg",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "jerez",
+   "n": "Jeréz",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "rompope",
+   "n": "Rompope",
+   "img": "fotos/gelatina-rompope.jpg",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "fresa",
+   "n": "Fresa",
+   "img": "fotos/gelatina-fresa.jpg",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "uva",
+   "n": "Uva",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "mora-azul",
+   "n": "Mora azul",
+   "img": "fotos/gelatina-mora-azul.jpg",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "durazno-con-pulpa",
+   "n": "Durazno (con pulpa)",
+   "img": "fotos/gelatina-durazno.jpg",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "mazapan",
+   "n": "Mazapán",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "chocolate",
+   "n": "Chocolate",
+   "img": "fotos/gelatina-chocolate.jpg",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "mosaico",
+   "n": "Mosaico",
+   "img": "fotos/gelatina-mosaico.jpg",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "flan",
+   "n": "Flan",
+   "img": "fotos/gelatina-flan.jpg",
+   "c": "Gelatinas",
+   "siempre": true
+  },
+  {
+   "id": "torta-de-salchicha",
+   "n": "Torta de salchicha",
+   "e": "🥪",
+   "img": "fotos/torta-salchicha.jpg",
+   "c": "Tortas y ensaladas",
+   "siempre": true
+  },
+  {
+   "id": "torta-de-pastor",
+   "n": "Torta de pastor",
+   "e": "🥪",
+   "img": "fotos/torta-pastor.jpg",
+   "c": "Tortas y ensaladas",
+   "siempre": true
+  },
+  {
+   "id": "torta-arabe",
+   "n": "Torta árabe",
+   "e": "🥪",
+   "img": "fotos/torta-arabe.jpg",
+   "c": "Tortas y ensaladas",
+   "siempre": true
+  },
+  {
+   "id": "pambazo",
+   "n": "Pambazo",
+   "e": "🥪",
+   "img": "fotos/pambazo.jpg",
+   "c": "Tortas y ensaladas",
+   "siempre": true
+  },
+  {
+   "id": "mochi-sandwich",
+   "n": "Mochi Sandwich",
+   "d": "Pan hokkaido de la casa, ensalada rusa, lechuga y aguacate.",
+   "e": "🥪",
+   "img": "fotos/mochi-sandwich.jpg",
+   "c": "Tortas y ensaladas",
+   "siempre": true
+  },
+  {
+   "id": "sandwich-chenchito",
+   "n": "Sandwich Chenchito",
+   "d": "Pan hokkaido de la casa, lechuga, jamón, queso oaxaca o fresco, aguacate y jitomate.",
+   "e": "🥪",
+   "img": "fotos/sandwich-chenchito.jpg",
+   "c": "Tortas y ensaladas",
+   "siempre": true
+  },
+  {
+   "id": "ensalada-rusa",
+   "n": "Ensalada rusa",
+   "d": "Ensalada rusa sobre una cama de lechuga romana, aguacate y jitomate en julianas, con galletas saladas.",
+   "e": "🥗",
+   "img": "fotos/ensalada-rusa.jpg",
+   "c": "Tortas y ensaladas",
+   "siempre": true
+  },
+  {
+   "id": "ensalada-aslancito",
+   "n": "Ensalada Aslancito",
+   "d": "Mezcla de hojas de lechuga romana, zanahoria rallada, jitomate, cebolla morada, pechuga asada y aderezo.",
+   "e": "🥗",
+   "img": "fotos/ensalada-aslancito.jpg",
+   "c": "Tortas y ensaladas",
+   "siempre": true
+  }
+ ],
+ "programacion": {}
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mochis · Café para todo el día</title>
+<link rel="icon" href="logo-circulo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Caveat:wght@600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fbf0dc;--card:#fff9ef;--brown:#5a2e22;--brown2:#7b4636;--pink:#d6457f;--pinkSoft:#f7c6d1;--orange:#c8641a;--line:#dba48f;--muted:#7a5d50}
+*{box-sizing:border-box}
+body{margin:0;color:var(--brown);font:500 16px/1.5 Quicksand,system-ui,sans-serif;background:var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cpath d='M32 46C8 28 17 8 32 21 47 8 56 28 32 46Z' fill='%23d6457f' opacity='.12'/%3E%3Cg fill='%235a2e22' opacity='.09'%3E%3Cellipse cx='108' cy='104' rx='10' ry='8'/%3E%3Ccircle cx='95' cy='91' r='4'/%3E%3Ccircle cx='105' cy='85' r='4'/%3E%3Ccircle cx='116' cy='85' r='4'/%3E%3Ccircle cx='125' cy='92' r='4'/%3E%3C/g%3E%3C/svg%3E")}
+.gingham{height:26px;background:conic-gradient(#eea9b8 25%,#fff4e4 0 50%,#eea9b8 0 75%,#fff4e4 0) 0 0/26px 26px;box-shadow:0 3px 0 rgba(90,46,34,.12)}
+.wrap{max-width:760px;margin:auto;padding:0 1.1rem}
+header{text-align:center;padding:1.8rem 0 .4rem;position:relative}
+.logo{width:170px;margin:0 auto;border-radius:50%;background:#fff;padding:6px;box-shadow:0 8px 22px rgba(90,46,34,.22);outline:2px dashed var(--pink);outline-offset:7px}
+.logo img{width:100%;height:auto;display:block;border-radius:50%}
+.deco{position:absolute;color:var(--pink);opacity:.55;font-size:1.5rem;animation:flota 4s ease-in-out infinite}
+@keyframes flota{50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.deco{animation:none}}
+.lema{font:600 1.7rem/1.2 Caveat,cursive;color:var(--brown2);margin:1rem 0 0}
+.hoy{display:inline-block;margin-top:.5rem;background:var(--pink);color:#fff;border-radius:99px;padding:.3rem 1.1rem;font-weight:700;box-shadow:0 3px 0 rgba(90,46,34,.25)}
+.hoy::before{content:"♥ "}
+.days{display:flex;gap:.45rem;overflow-x:auto;padding:1rem .2rem .6rem;scrollbar-width:thin}
+.days button{flex:0 0 auto;border:2px dashed var(--line);background:var(--card);color:var(--brown);padding:.35rem .95rem;border-radius:99px;font:700 .95rem Quicksand,sans-serif;cursor:pointer}
+.days button[aria-pressed=true]{background:var(--brown);color:#fff;border:2px solid var(--brown)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.banner{display:block;width:100%;max-width:400px;margin:1rem auto 0;border-radius:20px;border:6px solid #fff;box-shadow:0 8px 22px rgba(90,46,34,.22);transform:rotate(-1deg)}
+.seccion{margin:2.4rem 0 1.6rem;padding:2.2rem .9rem 1rem;border:2px dashed var(--line);border-radius:28px;background:rgba(255,249,239,.65);position:relative}
+.seccion h2{position:absolute;top:-1.25rem;left:50%;transform:translateX(-50%) rotate(-1.5deg);margin:0;white-space:nowrap}
+.seccion h2 span{display:block;font:800 1.55rem/1 "Baloo 2",sans-serif;color:#fff;background:var(--brown);padding:.4rem 1.6rem .3rem;border-radius:8px 26px 10px 24px/20px 8px 22px 10px;box-shadow:0 4px 0 rgba(0,0,0,.14)}
+.especial h2 span{background:var(--pink)}
+.temporada h2 span{background:var(--orange)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem .8rem}
+@media (min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+.item{background:var(--card);border-radius:20px;padding:.5rem .5rem .8rem;box-shadow:0 6px 14px rgba(90,46,34,.13);text-align:center;display:flex;flex-direction:column}
+.ph{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--pinkSoft);display:grid;place-items:center;font-size:3rem;position:relative}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.etq{margin:-.9rem auto .3rem;position:relative;z-index:1;font:700 1rem/1.15 "Baloo 2",sans-serif;color:#fff;padding:.3rem .9rem;border-radius:6px 16px 8px 14px;transform:rotate(-1deg);background:var(--pink);max-width:94%}
+.item:nth-child(3n+2) .etq,.tile:nth-child(3n+2) b{background:var(--orange)}
+.item:nth-child(3n) .etq,.tile:nth-child(3n) b{background:var(--brown)}
+.item p{margin:.1rem .3rem 0;color:var(--muted);font-size:.85rem;line-height:1.35}
+.precio{align-self:center;margin-top:.45rem;background:var(--cream);border:2px solid var(--pink);color:var(--pink);font:800 1rem "Baloo 2",sans-serif;border-radius:99px;padding:0 .75rem}
+.nuevo{position:absolute;top:8px;left:8px;background:var(--pink);color:#fff;font:700 .75rem Quicksand,sans-serif;padding:.1rem .6rem;border-radius:99px}
+.sello{position:absolute;top:8px;right:8px;background:var(--brown);color:#fff;font:700 .75rem Quicksand,sans-serif;padding:.1rem .6rem;border-radius:99px}
+.agotado{opacity:.75}.agotado .ph img{filter:grayscale(.85)}.agotado .etq,.agotado b{text-decoration:line-through}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:1rem .6rem;margin-bottom:.9rem}
+.tile{text-align:center}
+.tile .ph2{aspect-ratio:1;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 5px 12px rgba(90,46,34,.22);background:var(--pinkSoft)}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile b{display:inline-block;margin-top:-.8rem;position:relative;font:700 .9rem/1.1 "Baloo 2",sans-serif;color:#fff;padding:.2rem .7rem;border-radius:6px 14px 8px 12px;background:var(--pink);transform:rotate(-1deg)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center}
+.chip{background:#fff;border:2px solid var(--pinkSoft);border-radius:99px;padding:.1rem .85rem;font-weight:700;color:var(--brown2)}
+.chip.agotado{text-decoration:line-through}
+.vacio{padding:1.2rem;border:2px dashed var(--line);border-radius:20px;color:var(--muted);text-align:center}
+.pedido{margin:2.4rem 0 1.6rem;background:var(--brown);color:var(--cream);border-radius:30px;padding:1.3rem 1rem 1.6rem;text-align:center;box-shadow:inset 0 0 0 6px var(--brown),inset 0 0 0 8px rgba(247,198,209,.65)}
+.cursi{font:600 1.8rem/1 Caveat,cursive;color:var(--pinkSoft);margin:0}
+.pedido h2{font:800 2rem/1.1 "Baloo 2",sans-serif;color:#fff;margin:.1rem 0 .8rem}
+.pedido #tels a{display:inline-block;margin:.25rem;padding:.35rem 1.2rem;border-radius:99px;background:var(--pink);color:#fff;font:800 1.2rem "Baloo 2",sans-serif;text-decoration:none;box-shadow:0 4px 0 rgba(0,0,0,.28)}
+.pedido #tels a.wa{display:block;width:max-content;margin:.8rem auto 0;background:#fff;color:var(--brown);font:700 1rem Quicksand,sans-serif}
+footer{text-align:center;color:var(--brown2);font-weight:700;padding:0 1rem 1.4rem}
+</style>
+</head>
+<body>
+<div class="gingham"></div>
+<div class="wrap">
+  <header>
+    <span class="deco" style="left:4%;top:34px">♥</span><span class="deco" style="right:6%;top:60px;animation-delay:.8s">🐾</span>
+    <span class="deco" style="left:12%;top:150px;animation-delay:1.6s">🐾</span><span class="deco" style="right:12%;top:170px;animation-delay:2.2s">♥</span>
+    <div class="logo"><img src="logo-circulo.png" alt="Mochis, café para todo el día. Aprobado por Aslan"></div>
+    <p class="lema" id="lema"></p>
+    <span class="hoy" id="hoy"></span>
+  </header>
+  <div class="days" id="dias" role="group" aria-label="Día de la semana"></div>
+  <div id="lista" aria-live="polite"></div>
+  <section class="pedido">
+    <p class="cursi">¿Se te antojó?</p>
+    <h2>¡Pídelo en Mochis!</h2>
+    <div id="tels"></div>
+  </section>
+</div>
+<footer id="pie"></footer>
+<div class="gingham"></div>
+
+<script>
+/* Este archivo ya no se edita para cambiar el menú: todo viene de menu.json,
+   que se modifica desde el panel (admin.html). */
+const COMPACTAS = ["Gelatinas"];   // secciones que se muestran como círculos/etiquetas
+const DIAS = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+let DATA = null, fechas = [], sel = 0;
+
+const $ = id => document.getElementById(id);
+const cap = s => s[0].toUpperCase() + s.slice(1);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+
+// Los próximos 5 días de venta (lunes a viernes), empezando por mañana o el siguiente día hábil.
+function proximosDias(){
+  const out = [], hoy = new Date();
+  for (let k = 1; out.length < 5 && k < 15; k++) {
+    const d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + k);
+    if (d.getDay() >= 1 && d.getDay() <= 5) out.push(d);
+  }
+  return out;
+}
+
+function tarjeta(i){
+  const foto = i.img
+    ? `<img src="${esc(i.img)}" alt="${esc(i.n)}" loading="lazy" onerror="this.replaceWith(document.createTextNode('${esc(i.e||"🍽️")}'))">`
+    : esc(i.e || "🍽️");
+  return `<article class="item ${i.agotado?"agotado":""}">
+    <div class="ph">${foto}${i.agotado?`<span class="sello">Agotado</span>`:""}${i.nuevo?`<span class="nuevo">Novedad</span>`:""}</div>
+    <h3 class="etq">${esc(i.n)}</h3>${i.d?`<p>${esc(i.d)}</p>`:""}${i.p!=null?`<span class="precio">$${esc(i.p)}</span>`:""}</article>`;
+}
+
+function seccion(titulo, items, extra=""){
+  let html;
+  if (COMPACTAS.includes(titulo)) {
+    const con = items.filter(i => i.img), sin = items.filter(i => !i.img);
+    html = (con.length ? `<div class="tiles">${con.map(i => `<div class="tile ${i.agotado?"agotado":""}"><div class="ph2"><img src="${esc(i.img)}" alt="${esc(i.n)}" loading="lazy" onerror="this.remove()"></div><b>${esc(i.n)}</b></div>`).join("")}</div>` : "")
+         + (sin.length ? `<div class="chips">${sin.map(i => `<span class="chip ${i.agotado?"agotado":""}">${esc(i.n)}</span>`).join("")}</div>` : "");
+  } else html = `<div class="grid">${items.map(tarjeta).join("")}</div>`;
+  return `<section class="seccion ${extra}"><h2><span>${esc(titulo)}</span></h2>${html}</section>`;
+}
+
+function pintar(){
+  const f = fechas[sel], nombre = DIAS[f.getDay()];
+  const man = new Date(); man.setDate(man.getDate() + 1);
+  const esManana = iso(man) === iso(fechas[0]);
+  $("hoy").textContent = (sel === 0 ? (esManana ? "Pedidos para mañana · " : "Pedidos para el ") : "Menú del ") + nombre + " " + f.getDate();
+  const prog = (DATA.programacion || {})[iso(f)];
+  const ids = new Set(prog || DATA.productos.filter(p => p.siempre).map(p => p.id));
+  const lista = DATA.productos.filter(p => ids.has(p.id));
+  let out = DATA.banners && DATA.banners[nombre] ? `<img class="banner" src="${esc(DATA.banners[nombre])}" alt="Menú del ${esc(nombre)}" onerror="this.remove()">` : "";
+  const temp = lista.filter(p => p.temporada), resto = lista.filter(p => !p.temporada);
+  if (temp.length) out += seccion((DATA.config && DATA.config.tituloTemporada) || "De temporada 🍂", temp, "temporada");
+  const grupos = {};
+  resto.forEach(i => (grupos[i.c || "Otros"] ||= []).push(i));
+  out += Object.entries(grupos).map(([g, arr]) => seccion(g, arr)).join("");
+  $("lista").innerHTML = lista.length ? out : `<div class="vacio">Todavía no hay productos para este día. Vuelve pronto.</div>`;
+  $("dias").innerHTML = fechas.map((d, i) => `<button type="button" data-i="${i}" aria-pressed="${i===sel}">${cap(DIAS[d.getDay()])} ${d.getDate()}${i===0?(esManana?" (mañana)":" (próximo)"):""}</button>`).join("");
+}
+
+$("dias").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  sel = +b.dataset.i; pintar();
+});
+
+fetch("menu.json?v=" + Date.now()).then(r => { if (!r.ok) throw 0; return r.json(); }).then(j => {
+  DATA = j; const c = j.config || {};
+  $("lema").textContent = c.lema || "";
+  $("pie").textContent = c.pie || "";
+  $("tels").innerHTML = (c.telefonos || []).map(t => `<a href="tel:+52${t.replace(/\D/g,"")}">📞 ${esc(t)}</a>`).join("")
+    + (c.whatsapp ? `<a class="wa" href="https://wa.me/${esc(c.whatsapp)}">Pedir por WhatsApp</a>` : "");
+  fechas = proximosDias(); pintar();
+}).catch(() => { $("lista").innerHTML = `<div class="vacio">No pude cargar el menú. Revisa tu conexión e intenta de nuevo.</div>`; });
+</script>
+</body>
+</html>
