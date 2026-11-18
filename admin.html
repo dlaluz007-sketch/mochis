@@ -6,40 +6,52 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Mochis · Panel</title>
 <style>
-:root{--cream:#fbf0dc;--card:#fff9ef;--brown:#5a2e22;--pink:#d6457f;--line:#dba48f;--muted:#7a5d50;--ok:#2f7d4f}
+:root{--cream:#fbf0dc;--card:#fff9ef;--brown:#5a2e22;--pink:#d6457f;--line:#dba48f;--muted:#7a5d50;--soft:#f7c6d1}
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--brown);font:500 15px/1.45 system-ui,sans-serif}
 header{position:sticky;top:0;z-index:5;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--brown);color:#fff;padding:.7rem 1rem}
 header h1{font-size:1.1rem;margin:0;flex:1}
 #estado{font-size:.85rem;opacity:.9}
-main{max-width:860px;margin:auto;padding:1rem}
+main{max-width:980px;margin:auto;padding:1rem}
 button,input,select,textarea{font:inherit}
-button{cursor:pointer;border:2px solid var(--brown);background:var(--card);color:var(--brown);border-radius:10px;padding:.35rem .8rem;font-weight:700}
+button{cursor:pointer;border:2px solid var(--brown);background:var(--card);color:var(--brown);border-radius:12px;padding:.4rem .9rem;font-weight:700}
 button.pri{background:var(--pink);border-color:var(--pink);color:#fff}
+button.big{flex:1 1 230px;padding:.9rem 1rem;font-size:1.05rem;background:var(--brown);color:#fff}
+button.big.alt{background:var(--pink);border-color:var(--pink)}
 button:disabled{opacity:.45;cursor:not-allowed}
-button.sm{padding:.1rem .6rem;font-size:.85rem}
-nav{display:flex;gap:.5rem;margin-bottom:1rem}
-nav button[aria-pressed=true]{background:var(--brown);color:#fff}
+button.sm{padding:.15rem .7rem;font-size:.85rem}
 input,select,textarea{width:100%;padding:.45rem .6rem;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--brown)}
 label{display:block;font-weight:700;font-size:.85rem;margin:.6rem 0 .15rem}
 label.ck{display:flex;gap:.5rem;align-items:center;font-weight:500;margin:.2rem 0}
 label.ck input{width:auto}
+.acciones{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1rem}
 .card{background:var(--card);border:2px dashed var(--line);border-radius:18px;padding:1rem;margin-bottom:1rem}
 .row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:end}.row>*{flex:1 1 150px}
-h2{font-size:1.05rem;margin:.2rem 0 .6rem}
-h3{margin:1rem 0 .3rem;font-size:.95rem;color:var(--pink)}
-.p{display:flex;gap:.7rem;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--line)}
-.p .th{width:46px;height:46px;border-radius:10px;background:#f7c6d1;display:grid;place-items:center;font-size:1.6rem;overflow:hidden;flex:none}
-.p .th img{width:100%;height:100%;object-fit:cover}
-.p .t{flex:1;min-width:0}.p .t small{display:block;color:var(--muted)}
-.tag{font-size:.7rem;background:var(--pink);color:#fff;border-radius:99px;padding:0 .5rem;margin-left:.3rem}
-.tag.o{background:#c8641a}.tag.g{background:#777}
-dialog{border:3px solid var(--brown);border-radius:18px;max-width:440px;width:92%;background:var(--card);color:var(--brown)}
+h2{font-size:1.05rem;margin:.2rem 0 .5rem}
+h3{margin:1rem 0 .4rem;font-size:.9rem;color:#fff;background:var(--brown);display:inline-block;padding:.1rem .8rem;border-radius:8px 18px 8px 16px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:700px){.cols{grid-template-columns:1fr}}
+.zona{min-height:120px;border:3px dashed var(--pink);border-radius:16px;padding:.6rem;background:#fff6f9}
+.zona.over{background:#ffe3ee}
+.cat{border:2px dashed var(--line);border-radius:16px;padding:.6rem;background:#fff}
+.tiles{display:flex;flex-wrap:wrap;gap:.5rem}
+.tile{position:relative;width:92px;text-align:center;cursor:grab;user-select:none;border-radius:12px;padding:.25rem;border:2px solid transparent;background:var(--card)}
+.tile.on{border-color:var(--pink);background:#ffe3ee}
+.tile .im{aspect-ratio:1;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-size:1.9rem;overflow:hidden}
+.tile .im img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.tile b{display:block;font-size:.75rem;line-height:1.1;margin-top:.2rem}
+.tile .ed,.tile .x{position:absolute;top:-6px;right:-6px;width:24px;height:24px;border-radius:50%;border:2px solid #fff;background:var(--brown);color:#fff;font-size:.8rem;display:grid;place-items:center;padding:0}
+.tile .x{background:var(--pink)}
+.tile .ok{position:absolute;top:2px;left:2px;background:var(--pink);color:#fff;border-radius:50%;width:20px;height:20px;font-size:.7rem;display:grid;place-items:center}
+.tag{font-size:.65rem;background:#c8641a;color:#fff;border-radius:99px;padding:0 .4rem}
+dialog{border:3px solid var(--brown);border-radius:18px;max-width:480px;width:94%;background:var(--card);color:var(--brown)}
 dialog::backdrop{background:rgba(90,46,34,.5)}
-#msg{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);background:var(--brown);color:#fff;padding:.6rem 1rem;border-radius:12px;max-width:92%;display:none;z-index:9}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.3rem}
+.chips button{padding:0 .6rem;font-size:.8rem;border-width:1.5px}
+#msg{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);background:var(--brown);color:#fff;padding:.6rem 1rem;border-radius:12px;max-width:92%;display:none;z-index:99}
 #msg.err{background:#b3261e}
-.muted{color:var(--muted);font-size:.85rem}
-#prev{max-width:140px;max-height:100px;border-radius:10px;margin-top:.4rem;display:none}
+.muted{color:var(--muted);font-size:.85rem;margin:.3rem 0}
+#prev{max-width:150px;max-height:110px;border-radius:10px;margin-top:.4rem;display:none}
 </style>
 </head>
 <body>
@@ -49,41 +61,43 @@ dialog::backdrop{background:rgba(90,46,34,.5)}
   <button id="bPub" class="pri" disabled>Publicar cambios</button>
 </header>
 <main>
-  <nav><button data-t="dia" aria-pressed="true">Menú por día</button><button data-t="prod" aria-pressed="false">Productos</button></nav>
+  <div class="acciones">
+    <button class="big" id="bManual">🗓️ Agregar menú manual</button>
+    <button class="big alt" id="bNuevo">➕ Agregar producto nuevo</button>
+  </div>
 
-  <section id="tDia">
+  <section id="vMenu" hidden>
     <div class="card">
       <div class="row">
-        <div><label for="fecha">Fecha del menú</label><input type="date" id="fecha"></div>
+        <div><label for="fecha">¿Para qué día es el menú?</label><input type="date" id="fecha"></div>
         <button id="bDef" class="sm">Volver al menú por defecto</button>
+        <button id="bVaciar" class="sm">Vaciar este día</button>
       </div>
       <p class="muted" id="aviso"></p>
     </div>
-    <div class="card" id="lista"></div>
-  </section>
-
-  <section id="tProd" hidden>
-    <div class="card">
-      <h2 id="fTit">Producto nuevo</h2>
-      <label for="n">Nombre</label><input id="n" maxlength="60">
-      <label for="d">Descripción (lo que lleva)</label><textarea id="d" rows="2"></textarea>
-      <div class="row">
-        <div><label for="c">Categoría</label><input id="c" list="cats" placeholder="Panadería, Tortas..."><datalist id="cats"></datalist></div>
-        <div><label for="p">Precio (opcional)</label><input id="p" type="number" min="0" step="1"></div>
-        <div><label for="e">Emoji (si no hay foto)</label><input id="e" maxlength="4" placeholder="🥐"></div>
-      </div>
-      <label for="foto">Foto</label><input id="foto" type="file" accept="image/*"><img id="prev" alt="">
-      <div class="row" style="margin-top:.5rem">
-        <div><label class="ck"><input type="checkbox" id="siempre"> Sale por defecto (días sin programar)</label>
-        <label class="ck"><input type="checkbox" id="nuevo"> Novedad</label></div>
-        <div><label class="ck"><input type="checkbox" id="temporada"> De temporada</label>
-        <label class="ck"><input type="checkbox" id="agotado"> Agotado</label></div>
-      </div>
-      <div class="row" style="margin-top:.8rem"><button id="bGuardar" class="pri">Guardar producto</button><button id="bCancel">Cancelar</button></div>
+    <div class="cols">
+      <div class="card"><h2 id="tDia">Menú del día</h2><p class="muted">Aquí van los productos que se venderán. Toca ✕ para quitar uno.</p><div class="zona" id="dia"></div></div>
+      <div class="card"><h2>Mis productos</h2><p class="muted">Arrástralos al menú del día, o tócalos para agregarlos o quitarlos. ✎ para editar.</p><div class="cat" id="cat"></div></div>
     </div>
-    <div class="card" id="prods"></div>
+    <div class="acciones"><button class="big alt" id="bGuardaMenu">💾 Guardar y publicar este menú</button></div>
   </section>
+  <p class="muted" id="ayuda">Pulsa <b>Agregar menú manual</b> para elegir qué se vende un día, o <b>Agregar producto nuevo</b> para crear uno.</p>
 </main>
+
+<dialog id="dProd">
+  <h2 id="fTit">Producto nuevo</h2>
+  <label for="n">Nombre</label><input id="n" maxlength="60">
+  <label for="d">Descripción (lo que lleva)</label><textarea id="d" rows="2"></textarea>
+  <label for="c">Apartado (Panadería, Gelatinas, Desayunos…)</label><input id="c" list="cats" placeholder="Escribe uno nuevo o elige"><datalist id="cats"></datalist>
+  <div class="chips" id="chipsC"></div>
+  <label for="foto">Foto</label><input id="foto" type="file" accept="image/*"><img id="prev" alt="">
+  <div class="row"><div><label for="p">Precio (opcional)</label><input id="p" type="number" min="0" step="1"></div><div><label for="e">Emoji (si no hay foto)</label><input id="e" maxlength="4" placeholder="🥐"></div></div>
+  <label class="ck"><input type="checkbox" id="siempre"> Sale por defecto (días sin programar)</label>
+  <label class="ck"><input type="checkbox" id="nuevo"> Novedad</label>
+  <label class="ck"><input type="checkbox" id="temporada"> De temporada</label>
+  <label class="ck"><input type="checkbox" id="agotado"> Agotado</label>
+  <div class="row" style="margin-top:.8rem"><button id="bGuardar" class="pri">Guardar</button><button id="bCancel">Cancelar</button><button id="bBorrar" class="sm">Borrar</button></div>
+</dialog>
 
 <dialog id="dCfg">
   <h2>Conexión con GitHub</h2>
@@ -102,7 +116,7 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, m => ({"&":"&amp;","<":"&lt;
 let D = null, SHA = null, cfg = {}, dirty = false, fotos = {}, fotoPend = null, editId = null;
 try { cfg = JSON.parse(localStorage.getItem("mochisCfg") || "{}"); } catch (e) {}
 
-function msg(t, err) { const m = $("msg"); m.textContent = t; m.className = err ? "err" : ""; m.style.display = "block"; clearTimeout(msg.t); msg.t = setTimeout(() => m.style.display = "none", err ? 7000 : 3500); }
+function msg(t, err) { const m = $("msg"); m.textContent = t; m.className = err ? "err" : ""; m.style.display = "block"; clearTimeout(msg.t); msg.t = setTimeout(() => m.style.display = "none", err ? 8000 : 3500); }
 const enc = s => btoa(unescape(encodeURIComponent(s)));
 const dec = b => decodeURIComponent(escape(atob(b.replace(/\s/g, ""))));
 const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
@@ -117,18 +131,17 @@ async function gh(path, opts = {}) {
   if (!r.ok) { let t = ""; try { t = (await r.json()).message; } catch (e) {} throw new Error(`GitHub ${r.status}: ${t || "error"}`); }
   return r.json();
 }
-
 async function conectar() {
   try {
     const j = await gh("menu.json");
     D = JSON.parse(dec(j.content)); SHA = j.sha;
-    D.productos ||= []; D.programacion ||= []; if (Array.isArray(D.programacion)) D.programacion = {};
+    D.productos ||= []; if (!D.programacion || Array.isArray(D.programacion)) D.programacion = {};
     setDirty(false); pintarTodo(); msg("Conectado. Menú cargado.");
     return true;
   } catch (e) { msg(e.message, true); return false; }
 }
-
 async function publicar() {
+  if (!D) return msg("Primero conecta con GitHub.", true);
   $("bPub").disabled = true; $("estado").textContent = "Publicando…";
   try {
     for (const path of Object.keys(fotos)) {
@@ -140,61 +153,79 @@ async function publicar() {
     Object.keys(D.programacion).forEach(k => { if (k < limite) delete D.programacion[k]; });
     const r = await gh("menu.json", { method: "PUT", body: JSON.stringify({ message: "Actualizar menú", content: enc(JSON.stringify(D, null, 1)), branch: cfg.branch, sha: SHA }) });
     SHA = r.content.sha; setDirty(false); pintarTodo();
-    msg("Publicado. La página pública se actualiza en 1 o 2 minutos.");
+    msg("✔ Guardado y publicado. La página pública se actualiza en 1 o 2 minutos.");
   } catch (e) {
     setDirty(true);
     msg(e.message.includes("409") ? "Alguien cambió el menú desde otro lugar. Pulsa Conexión → Conectar para recargar (perderías cambios sin publicar)." : e.message, true);
   }
 }
 
-/* ---------- Menú por día ---------- */
-function efectivo(f) { const p = D.programacion[f]; return new Set(p ? p : D.productos.filter(x => x.siempre).map(x => x.id)); }
-function pintarDia() {
-  if (!D) { $("lista").innerHTML = '<p class="muted">Conecta con GitHub para empezar.</p>'; return; }
-  const f = $("fecha").value, ef = efectivo(f), prog = !!D.programacion[f];
-  const dow = new Date(f + "T12:00").getDay();
-  $("aviso").textContent = (dow === 0 || dow === 6 ? "⚠ Ese día es fin de semana (solo se vende de lunes a viernes). " : "") + (prog ? "Este día tiene menú programado." : "Este día no está programado: se muestran los productos 'por defecto'. Marca o desmarca para programarlo.");
-  const g = {}; D.productos.forEach(p => (g[p.c || "Otros"] ||= []).push(p));
-  $("lista").innerHTML = `<h2>Productos que salen este día (${ef.size})</h2>` + Object.entries(g).map(([c, a]) => `<h3>${esc(c)}</h3>` + a.map(p => `<label class="ck p"><input type="checkbox" data-id="${esc(p.id)}" ${ef.has(p.id) ? "checked" : ""}><span class="th">${th(p)}</span><span class="t">${esc(p.n)}${tags(p)}</span></label>`).join("")).join("");
+/* ---------- Menú manual ---------- */
+const efectivo = f => new Set(D.programacion[f] || D.productos.filter(x => x.siempre).map(x => x.id));
+const thumb = p => p.img ? `<img src="${esc(fotos[p.img] || p.img)}" alt="">` : esc(p.e || "🍽️");
+const apartados = () => [...new Set(D.productos.map(p => p.c || "Otros"))];
+function tile(p, modo, on) {
+  return `<div class="tile ${on ? "on" : ""}" draggable="true" data-id="${esc(p.id)}" data-src="${modo}" title="${esc(p.n)}">
+    <div class="im">${thumb(p)}</div><b>${esc(p.n)}</b>${p.temporada ? '<span class="tag">Temporada</span>' : ""}
+    ${modo === "cat" ? `${on ? '<span class="ok">✓</span>' : ""}<button class="ed" data-ed="${esc(p.id)}" title="Editar">✎</button>` : `<button class="x" data-x="${esc(p.id)}" title="Quitar">✕</button>`}</div>`;
 }
-const th = p => p.img ? `<img src="${esc(fotos[p.img] || p.img)}" alt="">` : esc(p.e || "🍽️");
-const tags = p => (p.nuevo ? '<span class="tag">Novedad</span>' : "") + (p.temporada ? '<span class="tag o">Temporada</span>' : "") + (p.agotado ? '<span class="tag g">Agotado</span>' : "");
-$("lista").addEventListener("change", e => {
-  const id = e.target.dataset.id; if (!id) return;
-  const f = $("fecha").value, s = efectivo(f);
-  e.target.checked ? s.add(id) : s.delete(id);
+function pintarMenu() {
+  if (!D) return;
+  const f = $("fecha").value, ef = efectivo(f), prog = !!D.programacion[f], dt = new Date(f + "T12:00");
+  $("tDia").textContent = "Menú del " + dt.toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" }) + ` (${ef.size})`;
+  $("aviso").textContent = (dt.getDay() === 0 || dt.getDay() === 6 ? "⚠ Es fin de semana (solo se vende de lunes a viernes). " : "") + (prog ? "Este día tiene menú programado." : "Este día no está programado: se mostrarían los productos 'por defecto'. Cuando elijas algo, quedará programado.");
+  const sel = D.productos.filter(p => ef.has(p.id));
+  $("dia").innerHTML = sel.length ? apartados().map(c => { const a = sel.filter(p => (p.c || "Otros") === c); return a.length ? `<h3>${esc(c)}</h3><div class="tiles">${a.map(p => tile(p, "dia", true)).join("")}</div>` : ""; }).join("") : '<p class="muted">Vacío. Arrastra aquí productos o tócalos en "Mis productos".</p>';
+  $("cat").innerHTML = D.productos.length ? apartados().map(c => `<h3>${esc(c)}</h3><div class="tiles">${D.productos.filter(p => (p.c || "Otros") === c).map(p => tile(p, "cat", ef.has(p.id))).join("")}</div>`).join("") : '<p class="muted">Aún no hay productos. Usa "Agregar producto nuevo".</p>';
+}
+function poner(id, on) {
+  const f = $("fecha").value, s = efectivo(f); on ? s.add(id) : s.delete(id);
   D.programacion[f] = D.productos.filter(p => s.has(p.id)).map(p => p.id);
-  setDirty(true); pintarDia();
-});
-$("bDef").onclick = () => { if (D) { delete D.programacion[$("fecha").value]; setDirty(true); pintarDia(); } };
-$("fecha").onchange = pintarDia;
-
-/* ---------- Productos ---------- */
-function pintarProds() {
-  if (!D) { $("prods").innerHTML = '<p class="muted">Conecta con GitHub para ver tus productos.</p>'; return; }
-  $("cats").innerHTML = [...new Set(D.productos.map(p => p.c).filter(Boolean))].map(c => `<option value="${esc(c)}">`).join("");
-  $("prods").innerHTML = `<h2>Todos los productos (${D.productos.length})</h2>` + D.productos.map(p => `<div class="p"><span class="th">${th(p)}</span><span class="t">${esc(p.n)}${tags(p)}<small>${esc(p.c || "")}${p.p != null ? " · $" + esc(p.p) : ""}</small></span><button class="sm" data-ed="${esc(p.id)}">Editar</button><button class="sm" data-del="${esc(p.id)}">Borrar</button></div>`).join("");
+  setDirty(true); pintarMenu();
 }
+$("cat").addEventListener("click", e => {
+  const ed = e.target.closest("[data-ed]"); if (ed) return abrirProd(ed.dataset.ed);
+  const t = e.target.closest(".tile"); if (t) poner(t.dataset.id, !efectivo($("fecha").value).has(t.dataset.id));
+});
+$("dia").addEventListener("click", e => { const x = e.target.closest("[data-x]"); if (x) poner(x.dataset.x, false); });
+document.addEventListener("dragstart", e => { const t = e.target.closest && e.target.closest(".tile"); if (t) { e.dataTransfer.setData("text/plain", t.dataset.id + "|" + t.dataset.src); e.dataTransfer.effectAllowed = "move"; } });
+[["dia", true], ["cat", false]].forEach(([id, on]) => {
+  const z = $(id);
+  z.addEventListener("dragover", e => { e.preventDefault(); z.classList.add("over"); });
+  z.addEventListener("dragleave", () => z.classList.remove("over"));
+  z.addEventListener("drop", e => { e.preventDefault(); z.classList.remove("over"); const [pid, src] = (e.dataTransfer.getData("text/plain") || "|").split("|"); if (pid && ((on && src === "cat") || (!on && src === "dia"))) poner(pid, on); });
+});
+$("fecha").onchange = pintarMenu;
+$("bDef").onclick = () => { if (D) { delete D.programacion[$("fecha").value]; setDirty(true); pintarMenu(); } };
+$("bVaciar").onclick = () => { if (D) { D.programacion[$("fecha").value] = []; setDirty(true); pintarMenu(); } };
+$("bGuardaMenu").onclick = publicar;
+$("bManual").onclick = () => { $("vMenu").hidden = !$("vMenu").hidden; $("ayuda").hidden = !$("vMenu").hidden; if (!$("vMenu").hidden) pintarMenu(); };
+
+/* ---------- Producto nuevo / editar ---------- */
 function limpiarForm() {
   editId = null; fotoPend = null; $("fTit").textContent = "Producto nuevo";
-  ["n","d","c","p","e","foto"].forEach(i => $(i).value = ""); ["siempre","nuevo","temporada","agotado"].forEach(i => $(i).checked = false);
-  $("siempre").checked = true; $("prev").style.display = "none";
+  ["n","d","c","p","e","foto"].forEach(i => $(i).value = ""); ["nuevo","temporada","agotado"].forEach(i => $(i).checked = false);
+  $("siempre").checked = true; $("prev").style.display = "none"; $("bBorrar").hidden = true;
 }
-$("prods").addEventListener("click", e => {
-  const ed = e.target.dataset.ed, del = e.target.dataset.del;
-  if (ed) {
-    const p = D.productos.find(x => x.id === ed); editId = ed; fotoPend = null; $("fTit").textContent = "Editar: " + p.n;
-    $("n").value = p.n; $("d").value = p.d || ""; $("c").value = p.c || ""; $("p").value = p.p ?? ""; $("e").value = p.e || ""; $("foto").value = "";
+function chipsApartados() {
+  const a = D ? apartados() : [];
+  $("cats").innerHTML = a.map(c => `<option value="${esc(c)}">`).join("");
+  $("chipsC").innerHTML = a.map(c => `<button type="button" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+}
+$("chipsC").addEventListener("click", e => { if (e.target.dataset.c) $("c").value = e.target.dataset.c; });
+function abrirProd(id) {
+  if (!D) return msg("Primero conecta con GitHub.", true);
+  limpiarForm(); chipsApartados();
+  if (id) {
+    const p = D.productos.find(x => x.id === id); editId = id; $("fTit").textContent = "Editar: " + p.n; $("bBorrar").hidden = false;
+    $("n").value = p.n; $("d").value = p.d || ""; $("c").value = p.c || ""; $("p").value = p.p ?? ""; $("e").value = p.e || "";
     ["siempre","nuevo","temporada","agotado"].forEach(i => $(i).checked = !!p[i]);
-    $("prev").style.display = p.img ? "block" : "none"; if (p.img) $("prev").src = fotos[p.img] || p.img;
-    scrollTo({ top: 0, behavior: "smooth" });
+    if (p.img) { $("prev").src = fotos[p.img] || p.img; $("prev").style.display = "block"; }
   }
-  if (del && confirm("¿Borrar este producto?")) {
-    D.productos = D.productos.filter(x => x.id !== del);
-    Object.keys(D.programacion).forEach(k => D.programacion[k] = D.programacion[k].filter(i => i !== del));
-    setDirty(true); pintarTodo();
-  }
-});
+  $("dProd").showModal();
+}
+$("bNuevo").onclick = () => abrirProd();
+$("bCancel").onclick = () => $("dProd").close();
 $("foto").onchange = e => {
   const f = e.target.files[0]; if (!f) return;
   const img = new Image(), u = URL.createObjectURL(f);
@@ -206,25 +237,25 @@ $("foto").onchange = e => {
   };
   img.onerror = () => msg("No pude leer esa imagen.", true); img.src = u;
 };
-$("bGuardar").onclick = () => {
-  if (!D) return msg("Primero conecta con GitHub.", true);
+$("bGuardar").onclick = async () => {
   const n = $("n").value.trim(); if (!n) return msg("Escribe el nombre del producto.", true);
-  let p = editId ? D.productos.find(x => x.id === editId) : { id: slug(n) + "-" + Date.now().toString(36).slice(-4) };
+  const p = editId ? D.productos.find(x => x.id === editId) : { id: slug(n) + "-" + Date.now().toString(36).slice(-4) };
   p.n = n; p.d = $("d").value.trim() || undefined; p.c = $("c").value.trim() || "Otros";
   p.p = $("p").value === "" ? undefined : Number($("p").value); p.e = $("e").value.trim() || undefined;
   ["siempre","nuevo","temporada","agotado"].forEach(i => p[i] = $(i).checked || undefined);
   if (fotoPend) { p.img = `fotos/${slug(n)}-${Date.now().toString(36)}.jpg`; fotos[p.img] = fotoPend; }
   if (!editId) D.productos.push(p);
-  limpiarForm(); setDirty(true); pintarTodo(); msg("Guardado. Recuerda publicar los cambios.");
+  $("dProd").close(); setDirty(true); pintarTodo(); await publicar();
 };
-$("bCancel").onclick = limpiarForm;
+$("bBorrar").onclick = async () => {
+  if (!editId || !confirm("¿Borrar este producto?")) return;
+  D.productos = D.productos.filter(x => x.id !== editId);
+  Object.keys(D.programacion).forEach(k => D.programacion[k] = D.programacion[k].filter(i => i !== editId));
+  $("dProd").close(); setDirty(true); pintarTodo(); await publicar();
+};
 
-/* ---------- Navegación y conexión ---------- */
-document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
-  document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-pressed", x === b));
-  $("tDia").hidden = b.dataset.t !== "dia"; $("tProd").hidden = b.dataset.t !== "prod";
-});
-function pintarTodo() { pintarDia(); pintarProds(); }
+/* ---------- Conexión ---------- */
+function pintarTodo() { pintarMenu(); }
 $("bCfg").onclick = () => { $("o").value = cfg.owner || ""; $("r").value = cfg.repo || ""; $("b").value = cfg.branch || "main"; $("t").value = cfg.token || ""; $("dCfg").showModal(); };
 $("bCerrar").onclick = () => $("dCfg").close();
 $("bConn").onclick = async () => {
@@ -234,7 +265,7 @@ $("bConn").onclick = async () => {
 };
 $("bPub").onclick = publicar;
 
-$("fecha").value = proxDia(); limpiarForm(); pintarTodo();
+$("fecha").value = proxDia(); limpiarForm();
 if (cfg.token && cfg.owner && cfg.repo) conectar(); else $("bCfg").click();
 </script>
 </body>
