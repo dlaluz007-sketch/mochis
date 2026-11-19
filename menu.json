@@ -206,6 +206,12 @@
    "img": "fotos/ensalada-aslancito.jpg",
    "c": "Tortas y ensaladas",
    "siempre": true
+  },
+  {
+   "id": "papas-xvae",
+   "n": "Papas",
+   "c": "Tortas y ensaladas",
+   "siempre": true
   }
  ],
  "programacion": {
