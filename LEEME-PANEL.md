@@ -20,11 +20,13 @@
    tu usuario, el repositorio (`mochis`), la rama (`main`) y el token → **Conectar**.
 
 ## Uso diario
-- **Menú por día:** elige la fecha, marca los productos que saldrán ese día y pulsa **Publicar cambios**.
-  Si un día no está programado, se muestran los productos marcados "Sale por defecto".
-- **Producto nuevo:** pestaña *Productos* → nombre, descripción, categoría, precio (opcional), foto
-  (se achica sola) y casillas de Novedad / De temporada / Agotado → *Guardar* → *Publicar cambios*.
-- **De temporada:** marca "De temporada" y aparecerá en su propia sección arriba del menú.
+- **🗓️ Agregar menú manual:** elige la fecha, y arrastra (o toca) los productos desde "Mis productos"
+  al "Menú del día". Se agrupan solos por apartado (Panadería, Gelatinas, Desayunos…). Quita con ✕.
+  Al terminar pulsa **Guardar y publicar este menú**.
+- **➕ Agregar producto nuevo:** nombre, descripción, apartado (elige uno o escribe uno nuevo), foto
+  (se achica sola) → **Guardar**. Se guarda, se publica y ya aparece en "Mis productos" para armar menús.
+- **✎ en cada producto:** editar nombre, descripción, foto, apartado, o borrarlo.
+- Si un día no se programa, se muestran los productos marcados "Sale por defecto".
 - La página pública se actualiza en 1 o 2 minutos tras publicar.
 
 ## Seguridad

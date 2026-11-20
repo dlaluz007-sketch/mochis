@@ -206,23 +206,7 @@
    "img": "fotos/ensalada-aslancito.jpg",
    "c": "Tortas y ensaladas",
    "siempre": true
-  },
-  {
-   "id": "papas-xvae",
-   "n": "Papas",
-   "c": "Tortas y ensaladas",
-   "siempre": true
   }
  ],
- "programacion": {
-  "2026-11-19": [
-   "donas",
-   "roles-de-canela",
-   "jerez-con-rompope",
-   "fresa",
-   "mora-azul",
-   "durazno-con-pulpa",
-   "sandwich-chenchito"
-  ]
- }
+ "programacion": {}
 }
