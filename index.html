@@ -11,7 +11,7 @@
 :root{--cream:#fbf0dc;--card:#fff9ef;--brown:#5a2e22;--brown2:#7b4636;--pink:#d6457f;--pinkSoft:#f7c6d1;--orange:#c8641a;--line:#dba48f;--muted:#7a5d50}
 *{box-sizing:border-box}
 body{margin:0;color:var(--brown);font:500 16px/1.5 Quicksand,system-ui,sans-serif;background:var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cpath d='M32 46C8 28 17 8 32 21 47 8 56 28 32 46Z' fill='%23d6457f' opacity='.12'/%3E%3Cg fill='%235a2e22' opacity='.09'%3E%3Cellipse cx='108' cy='104' rx='10' ry='8'/%3E%3Ccircle cx='95' cy='91' r='4'/%3E%3Ccircle cx='105' cy='85' r='4'/%3E%3Ccircle cx='116' cy='85' r='4'/%3E%3Ccircle cx='125' cy='92' r='4'/%3E%3C/g%3E%3C/svg%3E")}
-.gingham{height:26px;background:conic-gradient(#eea9b8 25%,#fff4e4 0 50%,#eea9b8 0 75%,#fff4e4 0) 0 0/26px 26px;box-shadow:0 3px 0 rgba(90,46,34,.12)}
+.gingham{height:26px;background:conic-gradient(var(--ging,#eea9b8) 25%,#fff4e4 0 50%,var(--ging,#eea9b8) 0 75%,#fff4e4 0) 0 0/26px 26px;box-shadow:0 3px 0 rgba(90,46,34,.12)}
 .wrap{max-width:760px;margin:auto;padding:0 1.1rem}
 header{text-align:center;padding:1.8rem 0 .4rem;position:relative}
 .logo{width:170px;margin:0 auto;border-radius:50%;background:#fff;padding:6px;box-shadow:0 8px 22px rgba(90,46,34,.22);outline:2px dashed var(--pink);outline-offset:7px}
@@ -60,16 +60,29 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--pink);outline-offse
 .pedido #tels a{display:inline-block;margin:.25rem;padding:.35rem 1.2rem;border-radius:99px;background:var(--pink);color:#fff;font:800 1.2rem "Baloo 2",sans-serif;text-decoration:none;box-shadow:0 4px 0 rgba(0,0,0,.28)}
 .pedido #tels a.wa{display:block;width:max-content;margin:.8rem auto 0;background:#fff;color:var(--brown);font:700 1rem Quicksand,sans-serif}
 footer{text-align:center;color:var(--brown2);font-weight:700;padding:0 1rem 1.4rem}
+.guirnalda{display:none;height:48px;margin-top:-2px;background-repeat:repeat-x;background-size:auto 48px;position:relative;z-index:2;pointer-events:none}
+#deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#deco span{position:absolute;opacity:.5;animation:flota 5s ease-in-out infinite}
+#deco span.cae{animation:cae linear infinite}
+@keyframes cae{from{transform:translateY(0) rotate(0)}to{transform:translateY(112vh) rotate(360deg)}}
+.wrap,footer{position:relative;z-index:1}
+.hero{display:block;width:100%;max-width:640px;margin:.6rem auto 0;border-radius:24px;border:6px solid #fff;box-shadow:0 8px 22px rgba(90,46,34,.22)}
+.frase{display:inline-block;max-width:92%;margin:.7rem 0 0;padding:.3rem 1.1rem;border:2px dashed var(--pink);border-radius:99px;background:rgba(255,249,239,.8);font:600 1.25rem/1.2 Caveat,cursive;color:var(--brown)}
+.hero[hidden],.frase[hidden]{display:none}
 </style>
 </head>
 <body>
+<div id="deco" aria-hidden="true"></div>
 <div class="gingham"></div>
+<div class="guirnalda" id="guirnalda"></div>
 <div class="wrap">
   <header>
     <span class="deco" style="left:4%;top:34px">♥</span><span class="deco" style="right:6%;top:60px;animation-delay:.8s">🐾</span>
     <span class="deco" style="left:12%;top:150px;animation-delay:1.6s">🐾</span><span class="deco" style="right:12%;top:170px;animation-delay:2.2s">♥</span>
-    <div class="logo"><img src="logo-circulo.png" alt="Mochis, café para todo el día. Aprobado por Aslan"></div>
+    <img id="hero" class="hero" alt="Mochis, café para todo el día" hidden>
+    <div class="logo" id="logoBox"><img src="logo-circulo.png" alt="Mochis, café para todo el día. Aprobado por Aslan"></div>
     <p class="lema" id="lema"></p>
+    <p class="frase" id="frase" hidden></p>
     <span class="hoy" id="hoy"></span>
   </header>
   <div class="days" id="dias" role="group" aria-label="Día de la semana"></div>
@@ -140,6 +153,7 @@ function pintar(){
   out += Object.entries(grupos).map(([g, arr]) => seccion(g, arr)).join("");
   $("lista").innerHTML = lista.length ? out : `<div class="vacio">Todavía no hay productos para este día. Vuelve pronto.</div>`;
   $("dias").innerHTML = fechas.map((d, i) => `<button type="button" data-i="${i}" aria-pressed="${i===sel}">${cap(DIAS[d.getDay()])} ${d.getDate()}${i===0?(esManana?" (mañana)":" (próximo)"):""}</button>`).join("");
+  pintarHero(sel === 0 && esManana);
 }
 
 $("dias").addEventListener("click", e => {
@@ -147,8 +161,87 @@ $("dias").addEventListener("click", e => {
   sel = +b.dataset.i; pintar();
 });
 
+
+/* ===== TEMAS DE TEMPORADA: cambian solos según la fecha =====
+   Probar uno:  tu-sitio/?tema=muertos      (claves: navidad, reyes, invierno, candelaria,
+   primavera, vacaciones, mamas, papas, verano, independencia, muertos)
+   Forzar uno siempre: pon "tema": "vacaciones" dentro de "config" en menu.json.
+   Imagen de cabecera de cada tema: carpeta temas/ (ej. temas/muertos.jpg); si no existe, se ve el logo. */
+const BASE = {pink:"#d6457f", orange:"#c8641a", soft:"#f7c6d1", ging:"#eea9b8", cream:"#fbf0dc"};
+const TEMAS = {
+  navidad:{v:{pink:"#c0392b",orange:"#2f7d4f",soft:"#f9d5cf",ging:"#e07a73"},dec:["❄️","⭐","🎄","❄️","🎁"],cae:true,banderas:["#c0392b","#2f7d4f","#fff6e8","#c0392b","#2f7d4f"],hero:"temas/navidad.jpg",heroManana:true,
+    frases:["Felices fiestas de parte de Aslan, Mochi y Chencho 🎄","Dulce Navidad y panecillos calientitos ☕","Para la cena, el postre y el antojo: ¡pide con tiempo! 🎁"]},
+  reyes:{v:{pink:"#8a4fb8",orange:"#a86b00",soft:"#eadcf5",ging:"#cdb4e6"},dec:["⭐","👑","✨","🎁"],banderas:["#8a4fb8","#e0a82e","#2e6fb5"],hero:"temas/reyes.jpg",
+    frases:["¡Feliz año nuevo! Que venga lleno de cosas ricas ✨","Día de Reyes: ¿ya partiste tu rosca? 👑","Los Reyes Magos también aprueban nuestros panecillos ⭐"]},
+  invierno:{v:{pink:"#2f6f96",soft:"#d6e8f2",ging:"#9cc3da"},dec:["☕","❄️","🧣","✨"],banderas:["#2f6f96","#9cc3da","#fff6e8"],hero:"temas/invierno.jpg",
+    frases:["Hace frío: un café y un panecillo lo arreglan ☕","Cobijita, café y budín: el plan perfecto 🧣","Calientito, rico y hecho con cariño 🤍"]},
+  candelaria:{v:{pink:"#a8600f",orange:"#2d6a8f",soft:"#fbe7b8",ging:"#f0c46a"},dec:["🕯️","🫔","🌽","✨"],banderas:["#e0a82e","#2d6a8f","#fff6e8"],hero:"temas/candelaria.jpg",
+    frases:["¿Te tocó el niño? Entonces te toca invitar los tamales 🫔","Febrero: tamales, atole y buena compañía 🕯️","Que la Candelaria te traiga un mes dulce 🌽"]},
+  primavera:{v:{pink:"#4c8a3a",orange:"#b8780a",soft:"#fff0a8",ging:"#f6dc6b",cream:"#fff6d8"},dec:["🌼","🌻","🦋","🌷","🐝"],banderas:["#f2c61f","#4c8a3a","#fff6e8","#f2c61f"],hero:"temas/primavera.jpg",
+    frases:["¡Llegó la primavera y todo florece! 🌼","Flores, sol y panecillos recién hechos 🌻","Mochi dice: ¡a disfrutar los días bonitos! 🦋"]},
+  vacaciones:{v:{pink:"#1f8a9b",orange:"#d4502c",soft:"#c9ecf0",ging:"#7fd0d9",cream:"#f4fbf8"},dec:["🏖️","🏄","🛟","🏐","🩴","🐚"],banderas:["#1f8a9b","#f2c61f","#d4502c","#fff6e8"],hero:"temas/vacaciones.jpg",
+    frases:["¡Vacaciones! Lleva tus antojos a la playa 🏖️","Semana Santa: sol, arena y algo dulce 🏄","Los gatitos ya traen short y salvavidas 🛟"]},
+  mamas:{v:{soft:"#fbd3e1",ging:"#f4a9c4",cream:"#fdeee9"},dec:["🌸","🌷","🎀","💐","🌺"],banderas:["#d6457f","#f4a9c4","#fff6e8","#c0568a"],tipo:"picado",hero:"temas/mamas.jpg",
+    frases:["Mamá, tu cariño es la receta más dulce 💐","Feliz Día de las Madres: hoy se consiente a mamá 🌷","Para la mejor mamá: un antojo hecho con amor 🎀","Mamá: gracias por cada abrazo y cada comida 🌸"]},
+  papas:{v:{pink:"#2b5f9e",orange:"#8b5a2b",soft:"#d3e1f4",ging:"#8fb1de",cream:"#f6f3ea"},dec:["☕","🏆","👔","⭐","🧢"],banderas:["#2b5f9e","#8b5a2b","#fff6e8","#2b5f9e"],hero:"temas/papas.jpg",
+    frases:["Para el mejor papá del mundo ☕","Feliz Día del Padre: hoy toca consentirlo 🏆","Papá, eres el héroe de la casa ⭐"]},
+  verano:{v:{pink:"#d9531e",orange:"#1f8a9b",soft:"#ffe0a8",ging:"#ffc861",cream:"#fff4dc"},dec:["☀️","🍉","🍦","🌴","🍹"],banderas:["#f2b705","#d9531e","#1f8a9b","#fff6e8"],hero:"temas/verano.jpg",
+    frases:["Verano: helado afuera, panecito adentro ☀️","Días largos y antojos frescos 🍉","Mochi y compañía, listos para el sol 🌴"]},
+  independencia:{v:{pink:"#b3262f",orange:"#2f7d4f",soft:"#f7dcd8",ging:"#6db583"},dec:["🇲🇽","🌶️","🎺","🎉","🌮"],banderas:["#2f7d4f","#fff6e8","#b3262f"],hero:"temas/independencia.jpg",
+    frases:["¡Viva México! 🇲🇽","Septiembre patrio: que no falte el antojito 🌶️","¡Viva la fiesta y el sabor mexicano! 🎺"]},
+  muertos:{v:{pink:"#7a2d8c",orange:"#d0630a",soft:"#f5d9a6",ging:"#e8a13a",cream:"#fcefd2"},dec:["🌼","🏵️","💀","🕯️","🌼"],banderas:["#d0630a","#7a2d8c","#d6457f","#f2b705","#2f7d4f"],tipo:"picado",hero:"temas/muertos.jpg",
+    frases:["Octubre: tiempo de flores, velas y pan 🌼","Un pan para recordar a quien quieres 🕯️","Aslan, Mochi y Chencho también se pintan de catrinas 💀"]},
+};
+function temaAuto(d = new Date()) {
+  const m = d.getMonth() + 1;
+  if (m === 1) return d.getDate() <= 6 ? "reyes" : "invierno";
+  return ["","","candelaria","primavera","vacaciones","mamas","papas","verano","verano","independencia","muertos","navidad","navidad"][m];
+}
+const PARAM_TEMA = new URLSearchParams(location.search).get("tema");
+let TEMA = null;
+
+function guirnalda(t) {
+  const g = $("guirnalda"), cs = t.banderas;
+  if (!cs) { g.style.display = "none"; return; }
+  const w = 44, W = w * cs.length;
+  let s = `<svg xmlns='http://www.w3.org/2000/svg' width='${W}' height='48'><line x1='0' y1='4' x2='${W}' y2='4' stroke='#5a2e22' stroke-opacity='.45' stroke-width='2'/>`;
+  cs.forEach((c, i) => { const x = i * w + 4;
+    s += t.tipo === "picado"
+      ? `<path d='M${x} 4h36v34l-4.5 5-4.5-5-4.5 5-4.5-5-4.5 5-4.5-5-4.5 5-4.5-5z' fill='${c}'/><circle cx='${x+18}' cy='16' r='5' fill='#fff6e8' fill-opacity='.8'/><path d='M${x+18} 26l5 5-5 5-5-5z' fill='#fff6e8' fill-opacity='.8'/>`
+      : `<path d='M${x} 4h36l-18 38z' fill='${c}' stroke='#5a2e22' stroke-opacity='.25'/>`; });
+  g.style.display = "block"; g.style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(s + "</svg>")}")`;
+}
+function decorar(t) {
+  const c = $("deco"); c.innerHTML = "";
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const rnd = (i, k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement("span");
+    s.textContent = t.dec[i % t.dec.length]; s.style.left = (rnd(i,1) * 96) + "%"; s.style.fontSize = (1.1 + rnd(i,2) * 1.3) + "rem";
+    if (t.cae && !quieto) { s.className = "cae"; s.style.top = "-3rem"; s.style.animationDuration = (10 + rnd(i,3) * 10) + "s"; s.style.animationDelay = "-" + (rnd(i,4) * 18) + "s"; }
+    else { s.style.top = (rnd(i,5) * 92) + "%"; s.style.animationDelay = (rnd(i,6) * 4) + "s"; if (quieto) s.style.animation = "none"; }
+    c.appendChild(s);
+  }
+}
+function aplicarTema(clave) {
+  const t = TEMAS[clave] || TEMAS[temaAuto()] || TEMAS.navidad; TEMA = t;
+  Object.entries({ ...BASE, ...t.v }).forEach(([k, v]) => document.documentElement.style.setProperty("--" + k, v));
+  guirnalda(t); decorar(t);
+  const fr = t.frases, f = $("frase");
+  f.hidden = !fr; if (fr) f.textContent = fr[Math.floor(Date.now() / 864e5) % fr.length];
+}
+function pintarHero(esManana) {
+  const t = TEMA, h = $("hero"), lg = $("logoBox");
+  if (t && t.hero && (!t.heroManana || esManana)) {
+    if (h.dataset.src !== t.hero) { h.dataset.src = t.hero; h.onload = () => { lg.hidden = true; }; h.onerror = () => { h.hidden = true; lg.hidden = false; }; h.src = t.hero; }
+    h.hidden = false; if (h.complete && h.naturalWidth) lg.hidden = true;
+  } else { h.hidden = true; lg.hidden = false; }
+}
+aplicarTema(PARAM_TEMA || temaAuto());
+
 fetch("menu.json?v=" + Date.now()).then(r => { if (!r.ok) throw 0; return r.json(); }).then(j => {
   DATA = j; const c = j.config || {};
+  if (!PARAM_TEMA && c.tema && TEMAS[c.tema]) aplicarTema(c.tema);
   $("lema").textContent = c.lema || "";
   $("pie").textContent = c.pie || "";
   $("tels").innerHTML = (c.telefonos || []).map(t => `<a href="tel:+52${t.replace(/\D/g,"")}">📞 ${esc(t)}</a>`).join("")
